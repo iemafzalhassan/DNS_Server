@@ -1,45 +1,36 @@
-# DNS_Server
+# DNS Server
 
-## Table of Contents
-- [Introduction](#introduction)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Introduction
-Welcome to the DNS_Server project! This project implements a DNS Query Tool, allowing users to perform DNS lookups and interact with DNS servers. This README will guide you through the process of setting up the project on your local machine and provide an overview of its functionality.
+This is a simple DNS server implementation in Node.js.
 
 ## Features
-- **DNS Query Tool:** Perform DNS lookups for various record types.
-- **Custom Port Support:** Ability to run the server on different ports (e.g., port 6000).
-- **User-friendly Interface:** Easy-to-use command-line interface for DNS queries.
 
-## Tech Stack
-- **Backend:**
-  - [Node.js](https://nodejs.org/)
-- **Libraries:**
-  - [dns](https://nodejs.org/api/dns.html) (Node.js built-in module)
+- Handles basic DNS queries
+- Supports A and AAAA record types
+- Customizable DNS records
+- HTTP interface for Vercel deployment
 
 ## Installation
-To get a local copy up and running, follow these simple steps.
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) (v14.x or higher)
-- [Git](https://git-scm.com/)
+1. Clone the repository: ``` git clone https://github.com/iemafzalhassan/DNS_Server.git ```
 
-### Clone the Repository
-```bash
-git clone https://github.com/iemafzalhassan/DNS_Server.git
-cd DNS_Server
-```
+2. Install dependencies: ``` npm install ```
+
+3. Run the server: ``` npm start ```
+
+## Usage
+
+The DNS server will listen on port 3000 by default (or the port specified by the `PORT` environment variable). 
+
+To use this DNS server, you'll need to send POST requests with the DNS query encoded in base64 format in the request body. The server will respond with the DNS response, also encoded in base64.
+
+Example usage with curl: ` curl -X POST -d "$(echo -n 'your_dns_query_here' | base64)" http://localhost:3000 `
+
+Replace 'your_dns_query_here' with the actual DNS query packet.
+
 ## Contributing
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
-- Fork the Project
-- Create your Feature Branch (```git checkout -b feature/AmazingFeature```)
-- Commit your Changes (```git commit -m 'Add some AmazingFeature'```)
-- Push to the Branch (```git push origin feature/AmazingFeature```)
-- Open a [```Pull Request```]
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

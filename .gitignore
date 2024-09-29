@@ -3,3 +3,4 @@
 node_modules/
 dns-server.log
 
+.vercel

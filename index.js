@@ -1,21 +1,27 @@
-const express = require('express');
-const path = require('path');
-const app = express();
+const http = require('http');
+const server = require('./server');
+
+const server = new server();
 const port = process.env.PORT || 3000;
 
-// Serve static files from the 'Public' directory
-app.use(express.static(path.join(__dirname, 'Public')));
-
-// Handle API routes (if any)
-app.post('/dns-lookup', (req, res) => {
-  // Your DNS lookup logic here
+const httpServer = http.createServer((req, res) => {
+  if (req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+    req.on('end', () => {
+      const dnsQuery = Buffer.from(body, 'base64');
+      const response = server.handleQuery(dnsQuery);
+      res.writeHead(200, { 'Content-Type': 'application/octet-stream' });
+      res.end(Buffer.from(response).toString('base64'));
+    });
+  } else {
+    res.writeHead(405, { 'Content-Type': 'text/plain' });
+    res.end('Method Not Allowed');
+  }
 });
 
-// For any other routes, serve the index.html file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'Public', 'index.html'));
-});
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+httpServer.listen(port, () => {
+  console.log(`DNS server (HTTP) listening on port ${port}`);
 });
