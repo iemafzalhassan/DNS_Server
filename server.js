@@ -195,7 +195,7 @@ app.post('/dns-lookup', (req, res) => {
   }
 });
 
-// Start the HTTP server on port 3000
-app.listen(3000, () => {
-  logger.info('HTTP server is running on port 3000');
+// Start the HTTP server on port 3001
+app.listen(3001, () => {
+  logger.info('HTTP server is running on port 3001');
 });
