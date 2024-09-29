@@ -1,0 +1,200 @@
+/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ff0080, #8000ff, #000000);
+  animation: gradient 10s ease infinite;
+  position: relative;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Navigation Bar Styles */
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between items */
+  z-index: 2; /* Make sure the nav bar is above the background */
+}
+
+nav h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+nav .nav-buttons {
+  display: flex;
+  gap: 15px; /* Space between buttons */
+}
+
+nav button {
+  padding: 5px 15px; /* Increased right padding */
+  margin-right: 10px; /* Added margin to the right */
+  cursor: pointer;
+  border: none;
+  background-color: #8000ff;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+nav button:hover {
+  background-color: #5e00cc; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.hamburger {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  cursor: pointer;
+  margin-right: 20px; /* Added right margin */
+}
+
+.hamburger div {
+  width: 30px;
+  height: 3px;
+  background-color: #8000ff;
+  margin: 4px;
+  transition: all 0.3s;
+}
+
+/* Menu Styles */
+.menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 60px; /* Position it below the navbar */
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.menu button {
+  margin: 10px 0; /* Space between buttons */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  nav .nav-buttons {
+    display: none; /* Hide buttons */
+  }
+  .hamburger {
+    display: flex; /* Show hamburger menu */
+  }
+}
+
+/* Headline and Description Styles */
+.headline-container {
+  text-align: center; /* Center text */
+  position: absolute; /* Position it above the container */
+  top: 100px; /* Adjust according to your layout */
+  width: 100%; /* Full width */
+  z-index: 1; /* Above background */
+}
+
+.headline-container h1 {
+  color: white; /* Headline color */
+  margin: 0; /* Remove margin */
+}
+
+.headline-container p {
+  color: white; /* Description color */
+  margin: 10px 0; /* Space above and below */
+}
+
+.container {
+  width: 600px; /* Fixed width */
+  height: 400px; /* Fixed height */
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow:  0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1; /* Keep above particles */
+  position: relative;
+  overflow: auto; /* Allow scrolling if content exceeds the fixed size */
+  margin-top: 100px; /* Space from headline */
+}
+
+label, select, input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#response {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+#loading {
+  display: none;
+  color: blue;
+  font-size: 18px; /* Larger font size for better visibility */
+  font-weight: bold; /* Bold text */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.history {
+  margin-top: 20px;
+}
+
+.query-item {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+/* Particle styles */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  animation: float 4s infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}

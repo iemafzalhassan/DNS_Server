@@ -1,0 +1,5 @@
+# Do not push Node modules to the repository
+
+node_modules/
+dns-server.log
+
