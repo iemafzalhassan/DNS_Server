@@ -1,48 +1,21 @@
 const express = require('express');
-const dns = require('dns');
+const path = require('path');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// Middleware to parse JSON data from POST requests
-app.use(express.json());
-app.use(express.static('public')); // Serve static HTML files
+// Serve static files from the 'Public' directory
+app.use(express.static(path.join(__dirname, 'Public')));
 
-// Supported DNS record types
-const supportedTypes = ['A', 'AAAA', 'CNAME', 'MX', 'PTR'];
-
-// API endpoint to handle DNS queries
+// Handle API routes (if any)
 app.post('/dns-lookup', (req, res) => {
-  const { hostname, type } = req.body;
-
-  // Check if hostname and type are provided
-  if (!hostname || !type) {
-    return res.status(400).json({ error: 'Hostname and record type are required' });
-  }
-
-  // Check if the provided record type is supported
-  if (!supportedTypes.includes(type.toUpperCase())) {
-    return res.status(400).json({ error: `Record type must be one of: ${supportedTypes.join(', ')}` });
-  }
-
-  // Perform DNS lookup using the custom resolver
-  resolver.resolve(hostname, type.toUpperCase(), (err, records) => {
-    if (err) {
-      // Handle specific error cases
-      if (err.code === 'ENODATA') {
-        return res.status(404).json({ error: `No ${type} records found for ${hostname}.` });
-      }
-      if (err.code === 'ENOTFOUND') {
-        return res.status(404).json({ error: `Hostname ${hostname} not found.` });
-      }
-      return res.status(500).json({ error: `DNS lookup failed: ${err.message}` });
-    }
-    
-    // Return records if found
-    res.json({ records });
-  });
+  // Your DNS lookup logic here
 });
 
-// Start the server
+// For any other routes, serve the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Public', 'index.html'));
+});
+
 app.listen(port, () => {
-  console.log(`DNS server running at http://localhost:${port}`);
+  console.log(`Server running on port ${port}`);
 });
