@@ -4,7 +4,10 @@
   "description": "A simple DNS server implementation",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "vercel dev"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "vercel": "^28.0.0"
+  }
 }
