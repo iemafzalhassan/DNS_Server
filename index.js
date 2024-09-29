@@ -10,11 +10,6 @@ app.use(express.static('public')); // Serve static HTML files
 // Supported DNS record types
 const supportedTypes = ['A', 'AAAA', 'CNAME', 'MX', 'PTR'];
 
-// Custom DNS Resolver pointing to local DNS server
-const resolver = new dns.Resolver({
-  resolvers: ['127.0.0.1'] // Use your local DNS server
-});
-
 // API endpoint to handle DNS queries
 app.post('/dns-lookup', (req, res) => {
   const { hostname, type } = req.body;
